@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-      <UserProfile name="Miftah" bio="Loves hiking and photography" age={30} />
+      <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
       <Header />
       <MainContent />
       <Footer />
