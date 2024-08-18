@@ -1,7 +1,9 @@
+import React from 'react';
+
 import UserDetails from './UserDetails';
 
 function UserInfo() {
-  return <UserDetails userData={userData} />;
+  return <UserDetails />;
 }
 
 export default UserInfo;
