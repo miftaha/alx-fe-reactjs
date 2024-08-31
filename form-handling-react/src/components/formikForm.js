@@ -1,43 +1,36 @@
-import React from 'react'
-import { Form, Field, ErrorMessage } from 'formik'
-import * as Yup from 'yup'
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
-const RegistrationForm = () => {
-  const initialValues = {
-    username: '',
-    email: '',
-    password: '',
-  }
+const validationSchema = Yup.object({
+  username: Yup.string().required("Username is required"),
+  email: Yup.string().email("Email is not valid").required("Email is required"),
+  password: Yup.string()
+    .min(8, "Password cannot be less than 8 characters")
+    .required("Password is required"),
+});
 
-  const validationSchema = Yup.object({
-    username: Yup.string().required('Username is required'),
-    email: Yup.string().email('Invalid email').required('Email is required'),
-    password: Yup.string().required('Password is required'),
-  })
-
-  const handleSubmit = (values) => {
-    console.log('Form submitted:', values)
-    // Here, you would typically send the form data to an API
-  }
-
+const FormikForm = () => {
   return (
-    <Form
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
+    <Formik
+      initialValues={{ username: "", email: "", password: "" }}
       validationSchema={validationSchema}
+      onSubmit={(values) => {
+        console.log(values);
+      }}
     >
-      <Field name="username" type="text" placeholder="Username" />
-      <ErrorMessage name="username" component="div" className="error" />
+      {() => (
+        <Form style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+          <Field type="text" name="username" placeholder="Username" />
+          <ErrorMessage name="username" component="div" />
+          <Field type="email" name="email" placeholder="Email" />
+          <ErrorMessage name="email" component="div" />
+          <Field type="password" name="password" placeholder="Password" />
+          <ErrorMessage name="password" component="div" />
+          <button type="submit">Submit</button>
+        </Form>
+      )}
+    </Formik>
+  );
+};
 
-      <Field name="email" type="email" placeholder="Email" />
-      <ErrorMessage name="email" component="div" className="error" />
-
-      <Field name="password" type="password" placeholder="Password" />
-      <ErrorMessage name="password" component="div" className="error" />
-
-      <button type="submit">Register</button>
-    </Form>
-  )
-}
-
-export default RegistrationForm
+export default FormikForm;
