@@ -1,11 +1,8 @@
-import UserProfile from './component/UserProfile'
+import UserProfile from "./components/UserProfile"
 
 function App() {
   return (
-    <>
-      {/* <div className="bg-gray-100">This is a React app with tailwind</div> */}
-      <UserProfile />
-    </>
+    <UserProfile />
   )
 }
 
