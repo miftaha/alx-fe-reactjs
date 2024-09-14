@@ -1,37 +1,35 @@
-import data from "../data.json";
-import { useState } from "react";
+import data from '../data.json'
+import { useState } from 'react'
 
 function AddRecipeForm() {
-  const [recipes, setRecipes] = useState(data);
-  const [title, setTitle] = useState("");
-  const [summary, setSummary] = useState("");
-  const [ingredients, setIngredients] = useState("");
-  const [steps, setSteps] = useState("");
+  const [recipes, setRecipes] = useState(data)
+  const [title, setTitle] = useState('')
+  const [summary, setSummary] = useState('')
+  const [ingredients, setIngredients] = useState('')
+  const [steps, setSteps] = useState('')
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({})
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    // if (!title || !summary || !ingredients || !steps) {
-    //   alert("Please fill out all fields");
-    // }
-    const validate = {};
+    event.preventDefault()
+
+    const validate = {}
     if (!title) {
-      validate.title = "Title is required";
+      validate.title = 'Title is required'
     }
 
     if (!summary) {
-      validate.summary = "Summary is required";
+      validate.summary = 'Summary is required'
     }
 
     if (!ingredients) {
-      validate.ingredients = "Ingredients are required";
+      validate.ingredients = 'Ingredients are required'
     }
 
     if (!steps) {
-      validate.steps = "Cooking steps are required";
+      validate.steps = 'Cooking steps are required'
     }
-    setErrors(validate);
+    setErrors(validate)
 
     const newRecipe = {
       id: Date.now(),
@@ -39,17 +37,17 @@ function AddRecipeForm() {
       summary,
       ingredients,
       instructions,
-    };
-    setRecipes([...recipes, newRecipe]);
-    setTitle("");
-    setSummary("");
-    setIngredients("");
-    setSteps("");
-    console.log(newRecipe);
-  };
+    }
+    setRecipes([...recipes, newRecipe])
+    setTitle('')
+    setSummary('')
+    setIngredients('')
+    setSteps('')
+    console.log(newRecipe)
+  }
 
   return (
-    <div className="bg-neutral-50 p-3 shadow-lg sm:w-full md:w-1/2 m-auto mt-3 rounded-sm">
+    <div className="bg-emerald-100 p-3 shadow-lg sm:w-full md:w-1/2 m-auto mt-3 rounded-sm">
       <form
         className="flex flex-col place-items-center gap-5 mt-2"
         onSubmit={handleSubmit}
@@ -61,9 +59,9 @@ function AddRecipeForm() {
           placeholder="Enter recipe name"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="border-solid border-2 border-yellow-600 rounded-md p-2"
+          className="border-solid border-2 border-orange-600 rounded-md p-2"
         />
-        {errors.title && <span className="text-red-600">{errors.title}</span>}
+        {errors.title && <span className="text-blue-600">{errors.title}</span>}
         <input
           type="text"
           name="summary"
@@ -71,10 +69,10 @@ function AddRecipeForm() {
           placeholder="Enter recipe summary"
           value={summary}
           onChange={(e) => setSummary(e.target.value)}
-          className="border-solid border-2 border-yellow-600 rounded-md p-2"
+          className="border-solid border-2 border-orange-600 rounded-md p-2"
         />
         {errors.summary && (
-          <span className="text-red-600">{errors.summary}</span>
+          <span className="text-blue-600">{errors.summary}</span>
         )}
         <textarea
           name="ingredients"
@@ -83,10 +81,10 @@ function AddRecipeForm() {
           placeholder="Enter ingredients"
           value={ingredients}
           onChange={(e) => setIngredients(e.target.value)}
-          className="border-solid border-2 border-yellow-600 rounded-md p-2"
+          className="border-solid border-2 border-orange-600 rounded-md p-2"
         />
         {errors.ingredients && (
-          <span className="text-red-600">{errors.ingredients}</span>
+          <span className="text-blue-600">{errors.ingredients}</span>
         )}
         <textarea
           name="instructions"
@@ -95,18 +93,18 @@ function AddRecipeForm() {
           placeholder="Enter cooking instructions"
           value={steps}
           onChange={(e) => setSteps(e.target.value)}
-          className="border-solid border-2 border-yellow-600 rounded-md p-2"
+          className="border-solid border-2 border-orange-600 rounded-md p-2"
         />
-        {errors.steps && <span className="text-red-600">{errors.steps}</span>}
+        {errors.steps && <span className="text-blue-600">{errors.steps}</span>}
         <button
           type="submit"
-          className="bg-yellow-600 text-neutral-50 rounded-lg p-3 font-bold"
+          className="bg-yellow-600 text-emerald-100 rounded-lg p-3 font-bold"
         >
           Add Recipe
         </button>
       </form>
     </div>
-  );
+  )
 }
 
-export default AddRecipeForm;
+export default AddRecipeForm
